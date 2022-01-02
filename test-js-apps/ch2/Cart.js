@@ -4,7 +4,7 @@ class Cart {
   }
 
   addToCart(item) {
-    this.items.push(item);
+    this.items = [...this.items, item];
   }
 
   removeFromCart(item) {
