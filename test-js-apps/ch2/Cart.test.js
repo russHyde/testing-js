@@ -36,3 +36,19 @@ test("removeFromCart() does nothing when asked to remove a missing item", () => 
 
   expect(cart.items).toEqual(["cheesecake"]);
 });
+
+test("removeFromCart does not depend on the order that items were added to the cart", () => {
+  const cart1 = new Cart();
+  const cart2 = new Cart();
+
+  cart1.addToCart("cheesecake");
+  cart1.addToCart("chocolate biscuits");
+
+  cart2.addToCart("chocolate biscuits");
+  cart2.addToCart("cheesecake");
+
+  cart1.removeFromCart("cheesecake");
+  cart2.removeFromCart("cheesecake");
+
+  expect(cart1.items).toEqual(cart2.items);
+});
