@@ -4,7 +4,7 @@
   "description": "",
   "main": "Cart.js",
   "scripts": {
-    "test": "node Cart.test.js"
+    "test": "jest"
   },
   "author": "",
   "license": "ISC",
