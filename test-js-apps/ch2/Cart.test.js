@@ -5,7 +5,7 @@ test("The addToCart function can add an item to the cart", () => {
   const cart = new Cart();
   cart.addToCart("cheesecake");
 
-  assert.deepStrictEqual(cart.items, ["cheesecake"]);
+  expect(cart.items).toEqual(["cheesecake"]);
 });
 
 test("The removeFromCart function can remove an item from the cart", () => {
@@ -13,5 +13,5 @@ test("The removeFromCart function can remove an item from the cart", () => {
   cart.addToCart("cheesecake");
   cart.removeFromCart("cheesecake");
 
-  assert.deepStrictEqual(cart.items, []);
+  expect(cart.items).toEqual([]);
 });
