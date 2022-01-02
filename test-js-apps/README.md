@@ -22,8 +22,12 @@ See [https://github.com/lucasfcosta/testing-javascript-applications]()
 ### jest functions / methods
 
 - `test(description, callback)`
+
   - define tests in a test script
+
 - `expect()`
   - create an object with various comparison methods ("matcher functions")
-- `expect(some_object).toEqual(some_other)`
-  - deep comparison of two objects (as for assert.deepStrictEqual())
+  - `expect(some_object).toEqual(some_other)`
+    - deep comparison of two objects (value equality; like `assert.deepStrictEqual`)
+  - `expect(some_object).toBe(some_other)`
+    - strict comparison of two objects (reference equality)
