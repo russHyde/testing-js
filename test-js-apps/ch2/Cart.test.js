@@ -28,3 +28,11 @@ test("The removeFromCart function can remove an item from the cart", () => {
 
   expect(cart.items).toEqual([]);
 });
+
+test("removeFromCart() does nothing when asked to remove a missing item", () => {
+  const cart = new Cart();
+  cart.addToCart("cheesecake");
+  cart.removeFromCart("chocolate biscuits");
+
+  expect(cart.items).toEqual(["cheesecake"]);
+});
