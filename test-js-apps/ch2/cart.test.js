@@ -1,13 +1,13 @@
 const { db, closeConnection } = require("./dbConnection");
 const { createCart, addItem } = require("./cart");
 
+afterAll(async () => await closeConnection());
+
 test("createCart creates a cart for a username", async () => {
   await db("carts").truncate();
   await createCart("Russ Hyde");
   const result = await db.select("username").from("carts");
   expect(result).toEqual([{ username: "Russ Hyde" }]);
-
-  await closeConnection();
 });
 
 test("addItem adds an item to a cart", async () => {
@@ -22,6 +22,4 @@ test("addItem adds an item to a cart", async () => {
   const result = await db.select("itemName").from("carts_items");
 
   expect(result).toEqual([{ cartId, itemName: "cheesecake" }]);
-
-  await closeConnection();
 });
