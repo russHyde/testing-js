@@ -1,4 +1,4 @@
-require("./server");
+const app = require("./server");
 
 const fetch = require("isomorphic-fetch");
 
@@ -13,6 +13,8 @@ const addItem = (username, item) => {
 const getItems = (username) => {
   return fetch(`${apiRoot}/carts/${username}/items`, { method: "GET" });
 };
+
+afterAll(() => app.close());
 
 test("adding items to a cart", async () => {
   const initialItemsResponse = await getItems("lucas");
