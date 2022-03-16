@@ -1,4 +1,4 @@
-const app = require("./server");
+const { app, resetState } = require("./server");
 
 const fetch = require("isomorphic-fetch");
 
@@ -13,6 +13,10 @@ const addItem = (username, item) => {
 const getItems = (username) => {
   return fetch(`${apiRoot}/carts/${username}/items`, { method: "GET" });
 };
+
+beforeEach(() => {
+  resetState();
+});
 
 afterAll(() => app.close());
 
