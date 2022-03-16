@@ -10,6 +10,12 @@ const addItem = (username, item) => {
   });
 };
 
+const deleteItem = (username, item) => {
+  return fetch(`${apiRoot}/carts/${username}/remove/${item}`, {
+    method: "POST",
+  });
+};
+
 const getItems = (username) => {
   return fetch(`${apiRoot}/carts/${username}/items`, { method: "GET" });
 };
@@ -19,6 +25,16 @@ beforeEach(() => {
 });
 
 afterAll(() => app.close());
+
+test("removing items from a cart", async () => {
+  const missingUserResponse = await deleteItem("notAUser", "cheesecake");
+  expect(missingUserResponse.status).toEqual(404);
+
+  await addItem("lucas", "cheesecake");
+
+  const deleteItemResponse = await deleteItem("lucas", "cheesecake");
+  expect(await deleteItemResponse.json()).toEqual([]);
+});
 
 test("adding items to a cart", async () => {
   const initialItemsResponse = await getItems("lucas");
